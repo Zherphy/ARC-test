@@ -1,0 +1,33 @@
+name: Multi-Cluster Runner Test
+on: [workflow_dispatch]
+
+jobs:
+  test-cluster-a:
+    runs-on: [self-hosted, cluster-a]
+    steps:
+    - name: Check Cluster A
+      run: |
+        echo "Running on Cluster A"
+        echo "Hostname: $HOSTNAME"
+        echo "Testing resource availability..."
+        df -h
+        free -h
+        
+  test-cluster-b:
+    runs-on: [self-hosted, cluster-b]
+    steps:
+    - name: Check Cluster B
+      run: |
+        echo "Running on Cluster B"
+        echo "Hostname: $HOSTNAME"
+        echo "Testing resource availability..."
+        df -h
+        free -h
+        
+  test-any-cluster:
+    runs-on: [self-hosted]
+    steps:
+    - name: Check Any Available Runner
+      run: |
+        echo "This job can run on any available runner"
+        echo "Current runner labels: ${{ toJson(runner.labels) }}"
