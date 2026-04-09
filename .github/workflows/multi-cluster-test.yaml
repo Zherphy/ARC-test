@@ -3,7 +3,7 @@ on: [workflow_dispatch]
 
 jobs:
   test-cluster-a:
-    runs-on: [ha-runner]
+    runs-on: arc
     steps:
     - name: Check Cluster A
       run: |
@@ -14,7 +14,7 @@ jobs:
         free -h
         
   test-cluster-b:
-    runs-on: [ha-runner]
+    runs-on: arc
     steps:
     - name: Check Cluster B
       run: |
